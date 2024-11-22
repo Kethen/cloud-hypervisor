@@ -843,6 +843,16 @@ pub fn configure_vcpu(
         CpuidPatch::set_cpuid_reg(&mut cpuid, 0x8000_001e, Some(0), CpuidReg::EAX, x2apic_id);
     }
 
+	// force intel vendor
+	CpuidPatch::set_cpuid_reg(&mut cpuid, 0, None, CpuidReg::EBX, 0x756e6547);
+	CpuidPatch::set_cpuid_reg(&mut cpuid, 0, None, CpuidReg::EDX, 0x49656e69);
+	CpuidPatch::set_cpuid_reg(&mut cpuid, 0, None, CpuidReg::ECX, 0x6c65746e);
+
+	// force skylake
+	// stepping, model, extended model, family
+	let cpu_eax:u32 = (3) | (0xe << 4) | (5 << 16) | (6 << 8);
+	CpuidPatch::set_cpuid_reg(&mut cpuid, 1, None, CpuidReg::EAX, cpu_eax);
+
     // Set ApicId in cpuid for each vcpu - found in cpuid ebx when eax = 1
     let mut apic_id_patched = false;
     for entry in &mut cpuid {
