@@ -168,15 +168,21 @@ impl Aml for AcpiGedDevice {
                             vec![&aml::MethodCall::new("\\_SB_.CPUS.CSCN".into(), vec![])],
                         ),
                         &aml::And::new(&aml::Local(1), &aml::Local(0), &2usize),
+                        // hide because memory hotplug is hidden
+                        /*
                         &aml::If::new(
                             &aml::Equal::new(&aml::Local(1), &2usize),
                             vec![&aml::MethodCall::new("\\_SB_.MHPC.MSCN".into(), vec![])],
                         ),
+                        */
                         &aml::And::new(&aml::Local(1), &aml::Local(0), &4usize),
+                        // hide because pci hotplug is hidden
+                        /*
                         &aml::If::new(
                             &aml::Equal::new(&aml::Local(1), &4usize),
                             vec![&aml::MethodCall::new("\\_SB_.PHPR.PSCN".into(), vec![])],
                         ),
+                        */
                         &aml::And::new(&aml::Local(1), &aml::Local(0), &8usize),
                         &aml::If::new(
                             &aml::Equal::new(&aml::Local(1), &8usize),

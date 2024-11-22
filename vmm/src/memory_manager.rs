@@ -2507,6 +2507,8 @@ impl Aml for MemoryMethods {
 
 impl Aml for MemoryManager {
     fn to_aml_bytes(&self, sink: &mut dyn acpi_tables::AmlSink) {
+        // hide it
+        /*
         if let Some(acpi_address) = self.acpi_address {
             // Memory Hotplug Controller
             aml::Device::new(
@@ -2600,6 +2602,7 @@ impl Aml for MemoryManager {
             )
             .to_aml_bytes(sink);
         }
+        */
 
         #[cfg(target_arch = "x86_64")]
         {

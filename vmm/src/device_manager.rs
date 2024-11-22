@@ -4561,6 +4561,8 @@ impl Aml for DeviceManager {
         }
 
         // PCI hotplug controller
+        // hide it
+        /*
         aml::Device::new(
             "_SB_.PHPR".into(),
             vec![
@@ -4618,6 +4620,7 @@ impl Aml for DeviceManager {
             ],
         )
         .to_aml_bytes(sink);
+        */
 
         for segment in &self.pci_segments {
             segment.to_aml_bytes(sink);

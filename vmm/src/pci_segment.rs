@@ -211,6 +211,8 @@ impl Aml for PciDevSlot {
             vec![
                 &aml::Name::new("_SUN".into(), &sun),
                 &aml::Name::new("_ADR".into(), &adr),
+		        // hide PHPR, since the hotplug device is hidden
+				/*
                 &aml::Method::new(
                     "_EJ0".into(),
                     1,
@@ -220,6 +222,7 @@ impl Aml for PciDevSlot {
                         vec![&aml::Path::new("_SUN"), &aml::Path::new("_SEG")],
                     )],
                 ),
+                */
             ],
         )
         .to_aml_bytes(sink)
@@ -258,6 +261,8 @@ impl Aml for PciDevSlotMethods {
         }
 
         aml::Method::new("DVNT".into(), 2, true, device_notifies_refs).to_aml_bytes(sink);
+        // hide PHPR, since the hotplug device is hidden
+        /*
         aml::Method::new(
             "PCNT".into(),
             0,
@@ -277,6 +282,7 @@ impl Aml for PciDevSlotMethods {
             ],
         )
         .to_aml_bytes(sink)
+        */
     }
 }
 
