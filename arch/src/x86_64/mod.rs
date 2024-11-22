@@ -854,7 +854,7 @@ pub fn configure_vcpu(
 	CpuidPatch::set_cpuid_reg(&mut cpuid, 1, None, CpuidReg::EAX, cpu_eax);
 
 	// remove hv vendor, can get quite unhappy on linux
-	CpuidPatch::set_cpuid_reg(&mut cpuid, 0x40000000, None, CpuidReg::EAX, 0);
+	//CpuidPatch::set_cpuid_reg(&mut cpuid, 0x40000000, None, CpuidReg::EAX, 0);
 	CpuidPatch::set_cpuid_reg(&mut cpuid, 0x40000000, None, CpuidReg::EBX, 0x65656557);
 	CpuidPatch::set_cpuid_reg(&mut cpuid, 0x40000000, None, CpuidReg::ECX, 0x65656565);
 	CpuidPatch::set_cpuid_reg(&mut cpuid, 0x40000000, None, CpuidReg::EDX, 0x65656565);
