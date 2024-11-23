@@ -128,6 +128,8 @@ impl BusDevice for AcpiGedDevice {
 
 impl Aml for AcpiGedDevice {
     fn to_aml_bytes(&self, sink: &mut dyn AmlSink) {
+        // hide ged and gec
+        /*
         aml::Device::new(
             "_SB_.GEC_".into(),
             vec![
@@ -220,6 +222,7 @@ impl Aml for AcpiGedDevice {
             ],
         )
         .to_aml_bytes(sink)
+        */
     }
 }
 
